@@ -20,6 +20,25 @@ string makelog(string month, string day, string time, string error){
     return log;
 }
 
+//Esta función le suma uno al número de accesos del resumen de una IP
+string addAccess(string &log){
+    string newlog;
+    int count = 0;
+    int accesses = 0;
+    for(int i = 19; i < log.size(); i++){
+        if(log[i] != '\n'){
+            count++;
+            accesses += 10*accesses + (int)log[i] - 48;
+        }
+        else
+            break;
+    }
+    accesses++;
+    log.erase(0, count + 19);
+    newlog  = "Numero de accesos: " + to_string(accesses) + log;
+    return newlog;
+}
+
 int main() {
     
 }
